@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QuipuTestTask.Services.Extensions;
 using QuipuTestTask.ViewModels;
 
 namespace QuipuTestTask;
@@ -16,6 +17,7 @@ public class Program
                 services.AddSingleton<App>();
                 services.AddSingleton<MainWindow>();
                 services.AddTransient<MainWindowViewModel>();
+                services.AddServices();
             })
             .Build();
 
