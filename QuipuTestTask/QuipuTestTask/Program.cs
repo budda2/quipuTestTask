@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QuipuTestTask.MarkupExtensions;
 using QuipuTestTask.Services.Extensions;
 using QuipuTestTask.ViewModels;
 
@@ -20,7 +21,8 @@ public class Program
                 services.AddServices();
             })
             .Build();
-
+        DependencyInjectionSource.ServiceProvider = host.Services;
+        
         var app = host.Services.GetService<App>();
         app?.Run();
     }
