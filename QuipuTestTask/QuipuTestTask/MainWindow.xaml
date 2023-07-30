@@ -9,6 +9,69 @@
         Title="Deposit Calculator" Height="450" Width="800"
         DataContext="{markupExtensions:DependencyInjectionSource Type=viewModels:MainWindowViewModel}">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <Label Margin="5">Initial Amount: </Label>
+                <TextBox Margin="5" 
+                         Padding="5" 
+                         Text="{Binding InitialAmount}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Margin="5">Months: </Label>
+                <TextBox Margin="5" 
+                         Padding="5" 
+                         Text="{Binding Months}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <Label Margin="5"
+                       ToolTip="in %">Monthly Interest Rate: </Label>
+                <TextBox Margin="5" 
+                         Padding="5" 
+                         Text="{Binding DepositMonthlyInterestRate}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3">
+                <Label Margin="5">Deposit Type: </Label>
+                <ComboBox Margin="5"
+                          ItemsSource="{Binding DepositTypes}"
+                          SelectedItem="{Binding SelectedDepositType}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4">
+                <Label Margin="5">Currency: </Label>
+                <ComboBox Margin="5"
+                          ItemsSource="{Binding SupportedCurrencies}"
+                          SelectedItem="{Binding SelectedSupportedCurrency}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" 
+                        Orientation="Horizontal" 
+                        Margin="5">
+                <Button Margin="5" 
+                        Command="{Binding CalculateCommand}">Calculate</Button>
+                <Label Margin="5"
+                       Visibility="{Binding CalculationHintVisibility}" 
+                       Content="{Binding CalculationHint}"/>
+            </StackPanel>
+            <Label Grid.Row="1" 
+                   Margin="5"
+                   Visibility="{Binding CalculationResultVisibility}"
+                   Content="{Binding CalculationResult}"
+                   ToolTip="Taxes not taken into account!!!"/>
+        </Grid>
     </Grid>
 </Window>
